@@ -1,4 +1,4 @@
-window.onload = function () {// vvvv----------callback
+window.onload = function () {
     this.document.getElementById("addEvent").addEventListener('click', add);
 }
 
@@ -7,9 +7,11 @@ function add() {
     document.getElementById("add_event_form").style.display = "block";
 }
 
-$("#add_event_form").submit(function(e) {
+$("#submitEvent").click(function(e) {
     e.preventDefault();
 });
+
+// submitEvent
 
 window.addEventListener('load', function () {
     let one_week = new Date(+new Date + 6.048e+8);

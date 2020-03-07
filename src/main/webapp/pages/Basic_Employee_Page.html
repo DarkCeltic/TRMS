@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
@@ -38,7 +38,7 @@
     <br>
     <br>
 
-    <form id="add_event_form" >
+    <form id="add_event_form" style="display: none;">
         <!-- **********************These are the req. for the form****************************
                 basic employee information; --yes
                 date,                       -- yes
@@ -54,74 +54,92 @@
         <h5>Complete the following form to submit your event reimbursement request.</h5>
         <div class="form-row">
             <div class=".col-md-2 mb-3">
-                <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
+                <input type="text" class="form-control" id="addevent_firstname" placeholder="First Name"
+                    name="firstname" required>
+                <span class="error">This field is required</span>
             </div>
             <div class=" .col-md-2 mb-3">
-                <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
+                <input type="text" class="form-control" id="addevent_lastname" placeholder="Last Name" name="lastname"
+                    required>
+                <span class="error">This field is required</span>
             </div>
             <div class=" .col-md-5 mb-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend3"
-                        placeholder="User Name" required>
+                    <input type="text" class="form-control" id="addevent_username" placeholder="User Name"
+                        name="username" required>
+                    <span class="error">This field is required</span>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class=".col-6 .col-md-4 mb-3">
                 <label>Event Start Date</label>
-                <input type="date" id="start" name="event_start_date" value="2020-03-04" min="2020-01-01"
-                    max="2025-12-31" class="form-control" id="event_start_date" required>
+                <input type="date" name="event_start_date" value="2020-03-04" min="2020-01-01" max="2025-12-31"
+                    class="form-control" id="addevent_event_start_date" required>
+                <span class="error">This field is required</span>
             </div>
             <div>
                 <label>Event End Date</label>
-                <input type="date" id="start" name="event_end_date" value="2020-03-04" min="2020-01-01" max="2025-12-31"
-                    class="form-control" id="event_end_date" required>
+                <input type="date" name="event_end_date" value="2020-03-04" min="2020-01-01" max="2025-12-31"
+                    class="form-control" id="addevent_event_end_date" required>
+                <span class="error">This field is required</span>
             </div>
             <div class=".col-6 .col-md-4 mb-3">
                 <label>Event Start Time</label>
-                <input type="time" name="event_start_time" class="form-control" id="event_start_time" value="18:00"
-                    required>
+                <input type="time" name="event_start_time" class="form-control" id="addevent_event_start_time"
+                    value="18:00" required>
+                <span class="error">This field is required</span>
             </div>
             <div>
                 <label>Event End Time</label>
-                <input type="time" name="event_end_time" class="form-control" id="event_end_time" value="20:00"
-                    required>
+                <input type="time" name="event_end_time" class="form-control" id="addevent_event_end_time" value="20:00"
+                    required />
+                <span class="error">This field is required</span>
             </div>
         </div>
         <div class="form-row">
             <div class=".col-8 .col-md-4 mb-3">
-                <input type="text" class="form-control" id="city" placeholder="City" required>
+                <input type="text" class="form-control" id="addevent_city" placeholder="City" name="city" required />
+                <span class="error">This field is required</span>
             </div>
             <div class=".col-3 .col-md-4 mb-3">
-                <input type="text" class="form-control" id="state" placeholder="State" required maxlength="2">
+                <input type="text" class="form-control" id="addevent_state" placeholder="State" required maxlength="2"
+                    name="state" />
+                <span class="error">This field is required</span>
             </div>
             <div class=".col-6 .col-md-4 mb-3">
-                <input type="text" class="form-control" id="zipcode" placeholder="Zip Code" required>
+                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                    onkeypress='return event.charCode === 9' class="form-control" maxlength="5" id="addevent_zipcode"
+                    placeholder="Zip Code" required name="zipcode" />
+                <span class="error">This field is required</span>
             </div>
         </div>
 
         <div class="form-row">
             <div class=".col-4 .col-md-4 mb-3">
                 <input type="text" class="form-control" maxlength="20" placeholder="Event Description"
-                    id="eventDescription" required>
+                    id="addevent_eventdescription" name="eventdescription" required>
+                <span class="error">This field is required</span>
             </div>
             <div>
-                <input type="number" class="form-control" placeholder="amount" min="20" max="1000" id="price" required>
+                <input type="number" class="form-control" placeholder="amount" min="20" max="1000" name="price"
+                    id="addevent_price" required>
+                <span class="error">This field is required</span>
             </div>
             <div class="dropdown .col-4 .col-md-4 mb-3">
                 <span class="custom-dropdown">
-                    <select required>
+                    <select required name="gradingformat" id="addevent_gradingformat">
                         <option value="" selected disabled hidden>Grading Format</option>
                         <option>Letter Grade</option>
                         <option>Pass/Fail</option>
                         <option>Presentation</option>
                     </select>
                 </span>
-
+                <span class="error" id="gradingformat">This field is required</span>
             </div>
             <div class="dropdown .col-4 .col-md-4 mb-3">
                 <span class="custom-dropdown">
-                    <select required>
+                    <select required name="eventtype" id="addevent_eventtype">
                         <option value="" selected disabled hidden>Event Type</option>
                         <option>University Course</option>
                         <option>Seminars</option>
@@ -130,14 +148,15 @@
                         <option>Technical Training</option>
                         <option>Other</option>
                     </select>
+                    <span class="error" id="eventtype">This field is required</span>
                 </span>
-
             </div>
         </div>
         <div class="form-row">
             <div class="form-group .col-8 .col-md-4 mb-3">
-                <textarea class="form-control" id="justification" rows="4" cols="35"
-                    placeholder="work-related justification" required></textarea>
+                <textarea class="form-control" id="addevent_justification" rows="4" cols="35"
+                    placeholder="work-related justification" name="justification" required></textarea>
+                <span class="error">This field is required</span>
             </div>
             <div class="upload-btn-wrapper">
                 <input type="file" name="myfile" accept=".pdf, .png, .jpeg, .jpg, .txt, or .doc, .msg" id="input_file">
@@ -160,7 +179,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    
+
     <script type="text/javascript" src="../js/addevent.js"></script>
     <!-- <script type="text/javascript" src="../js/Basic_Employee_Page.js"></script> -->
 

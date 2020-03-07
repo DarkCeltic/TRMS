@@ -1,4 +1,4 @@
-class Event {
+class Events {
     constructor(eventDescription, price, city, state,
         zipCode, startDate, endDate, startTime, endTime,
         gradingFormat, eventType, justification, username) {
@@ -19,49 +19,243 @@ class Event {
 }
 
 function addEvent() {
+
     event.preventDefault();
+
     console.log("This should run");
-    let eventDescription = document.getElementById("eventDescription").value;
-    console.log(document.getElementById("price").value + " " +
-        document.getElementById("price").value + " " +
-        document.getElementById("city").value + " " +
-        document.getElementById("state").value + " " +
-        document.getElementById("zipCode").value + " " +
-        document.getElementById("startDate").value + " " +
-        document.getElementById("endDate").value + " " +
-        document.getElementById("startTime").value + " " +
-        document.getElementById("endTime").value + " " +
-        document.getElementById("gradingFormat").value + " " +
-        document.getElementById("eventType").value + " " +
-        document.getElementById("justification").value + " " +
-        document.getElementById("username").value);
-    // let price = document.getElementById("price").value;
-    // let city = document.getElementById("city").value;
-    // let state = document.getElementById("state").value;
-    // let zipCode = document.getElementById("zipCode").value;
-    // let startDate = document.getElementById("startDate").value;
-    // let endDate = document.getElementById("endDate").value;
-    // let startTime = document.getElementById("startTime").value;
-    // let endTime = document.getElementById("endTime").value;
-    // let gradingFormat = document.getElementById("gradingFormat").value;
-    // let eventType = document.getElementById("eventType").value;
-    // let justification = document.getElementById("justification").value;
-    // let username = document.getElementById("username ").value;
+    let eventDescription = document.getElementById("addevent_eventdescription").value;
+    // console.log(document.getElementById("addevent_price").value);
+    // console.log(document.getElementById("addevent_city").value);
+    // console.log(document.getElementById("addevent_state").value);
+    // console.log(document.getElementById("addevent_zipcode").value);
+    // console.log(document.getElementById("addevent_event_start_date").value);
+    // console.log(document.getElementById("addevent_event_end_date").value);
+    // console.log(document.getElementById("addevent_event_start_time").value);
+    // console.log(document.getElementById("addevent_event_end_time").value);
+    // console.log(document.getElementById("addevent_gradingformat").value);
+    // console.log(document.getElementById("addevent_eventtype").value);
+    // console.log(document.getElementById("addevent_justification").value);
+    // console.log(document.getElementById("addevent_username").value);
+    let price = document.getElementById("addevent_price").value;
+    let city = document.getElementById("addevent_city").value;
+    let state = document.getElementById("addevent_state").value;
+    let zipCode = document.getElementById("addevent_zipcode").value;
+    let startDate = document.getElementById("addevent_event_start_date").value;
+    let endDate = document.getElementById("addevent_event_end_date").value;
+    let startTime = document.getElementById("addevent_event_start_time").value;
+    let endTime = document.getElementById("addevent_event_end_time").value;
+    let gradingFormat = document.getElementById("addevent_gradingformat").value;
+    let eventType = document.getElementById("addevent_eventtype").value;
+    let justification = document.getElementById("addevent_justification").value;
+    let username = document.getElementById("addevent_username").value;
 
-    let events = new Event(eventDescription, price, city, state,
-        zipCode, startDate, endDate, startTime, endTime,
-        gradingFormat, eventType, justification, username);
+        let newEvents = new Events(eventDescription, price, city, state,
+            zipCode, startDate, endDate, startTime, endTime,
+            gradingFormat, eventType, justification, username);
 
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("Success");
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Success");
+            }
         }
-    }
-    xhr.open("POST", "/TRMS/event_request", true);
-    xhr.send(JSON.stringify(events));
+        xhr.open("POST", "/TRMS/event_request", true);
+        xhr.send(JSON.stringify(newEvents));
 }
 
 window.onload = function () {
-    this.document.getElementById("submitEvent").addEventListener("click", addEvent, false);
+    this.document.getElementById("addEvent").addEventListener('click', add);
+    // this.document.getElementById("submitEvent").addEventListener("click", addEvent, false);
 }
+
+
+// window.onload = function () {
+//     this.document.getElementById("addEvent").addEventListener('click', add);
+// }
+
+function add() {
+    document.getElementById("addEvent").disabled = true;
+    document.getElementById("add_event_form").style.display = "block";
+}
+
+// $("#submitEvent").click(function(e) {
+//     e.preventDefault();
+// });
+
+// submitEvent
+
+window.addEventListener('load', function () {
+    let one_week = new Date(+new Date + 6.048e+8);
+    let year = one_week.getUTCFullYear();
+    let day = one_week.getDate();
+    var month = one_week.getMonth() + 1;
+    if (month < 10) {
+        month = "0" + month;
+    }
+    let one_week_from_now = year + "-" + month + "-" + day;
+    let date = document.getElementsByName("event_start_date")[0];
+    date.min = one_week_from_now;
+
+    let end_date = document.getElementsByName("event_end_date")[0];
+    end_date.min = one_week_from_now;
+});
+
+$(document).ready(function () {
+    $('#addevent_firstname').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    });
+    $('#addevent_lastname').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_username').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_event_start_date').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_event_end_date').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_event_start_time').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_event_end_time').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_city').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_state').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_zipcode').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_eventdescription').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_price').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_gradingformat').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_eventtype').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    }); $('#addevent_justification').on('input', function () {
+        var input = $(this);
+        var is_name = input.val();
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    });
+});
+
+$("#submitEvent").click(function (event) {
+    var form_data = $("#add_event_form").serializeArray();
+    var error_free = true;
+    for (var input in form_data) {
+        var element = $("#addevent_" + form_data[input]['name']);
+        var valid = element.hasClass("valid");
+        var error_element = $("span", element.parent());
+        if (!valid) {
+            error_element.removeClass("error").addClass("error_show");
+            error_free = false;
+            // console.log("This shouldnt run");
+        } else {
+            error_element.removeClass("error_show").addClass("error");
+        }
+    }
+    if (!error_free) {
+        event.preventDefault();
+    }
+    else {
+        event.preventDefault();
+        let gradingFormat = $('#addevent_gradingformat');
+        let eventType = $('#addevent_eventtype');
+        if (gradingFormat.val() === null || eventType.val() === null) {
+            if (gradingFormat.val() === null) {
+                $("#gradingformat").removeClass("error").addClass("error_show");
+            }
+            else {
+                $("#eventtyoe").removeClass("error").addClass("error_show");
+            }
+        } else {
+            addEvent();
+        }
+    }
+});
