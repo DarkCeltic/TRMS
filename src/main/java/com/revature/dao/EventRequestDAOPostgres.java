@@ -18,7 +18,7 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 	private static final String INSERT_EVENTS = "insert into " + EVENTS_TABLE
 			+ " (event_description, price, city, state, zip_code, start_date, end_date, "
 			+ "start_time, end_time, grading_format_id, event_type_id, justification, "
-			+ "username, final_grade) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			+ "username) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	public void setConn(Connection conn) {
 		this.conn = conn;
@@ -38,14 +38,17 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 			stmt.setString(4, event.getState());
 			stmt.setInt(5, event.getZipCode());
 			stmt.setDate(6, event.getStartDate());
+			System.out.println(event.getStartDate());
 			stmt.setDate(7, event.getEndDate());
 			stmt.setTime(8, event.getStartTime());
+			System.out.println(event.getStartTime());
 			stmt.setTime(9, event.getEndTime());
 			stmt.setInt(10, event.getGradingFormat());
+			System.out.println(event.getGradingFormat());
 			stmt.setInt(11, event.getEventType());
 			stmt.setString(12, event.getJustification());
+			System.out.println(event.getUsername());
 			stmt.setString(13, event.getUsername());
-			stmt.setString(14, event.getFinalGrade());
 
 		} catch (SQLException e) {
 			EventInsertionException newE = new EventInsertionException();

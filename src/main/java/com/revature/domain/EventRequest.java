@@ -2,8 +2,6 @@ package com.revature.domain;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class EventRequest {
 	private String eventDescription;
@@ -11,10 +9,10 @@ public class EventRequest {
 	private String city;
 	private String state;
 	private int zipCode;
-	private LocalDate startDate;
-	private LocalDate endDate;
-	private LocalTime startTime;
-	private LocalTime endTime;
+	private String startDate;
+	private String endDate;
+	private String startTime;
+	private String endTime;
 	private String gradingFormat;
 	private String eventType;
 	private String justification;
@@ -74,7 +72,7 @@ public class EventRequest {
 		return java.sql.Date.valueOf(startDate);
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
@@ -82,23 +80,23 @@ public class EventRequest {
 		return java.sql.Date.valueOf(endDate);
 	}
 
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
 	public Time getStartTime() {
-		 return java.sql.Time.valueOf(startTime);
+		 return java.sql.Time.valueOf(startTime+":00");
 	}
 
-	public void setStartTime(LocalTime startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
 	public Time getEndTime() {
-		return java.sql.Time.valueOf(endTime);
+		return java.sql.Time.valueOf(endTime+":00");
 	}
 
-	public void setEndTime(LocalTime endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
@@ -272,8 +270,8 @@ public class EventRequest {
 				+ ", justification=" + justification + ", username=" + username + ", finalGrade=" + finalGrade + "]";
 	}
 
-	public EventRequest(String eventDescription, int price, String city, String state, int zipCode, LocalDate startDate,
-			LocalDate endDate, LocalTime startTime, LocalTime endTime, String gradingFormat, String eventType,
+	public EventRequest(String eventDescription, int price, String city, String state, int zipCode, String startDate,
+			String endDate, String startTime, String endTime, String gradingFormat, String eventType,
 			String justification, String username) {
 		this.eventDescription = eventDescription;
 		this.price = price;

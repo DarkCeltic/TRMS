@@ -29,10 +29,11 @@ public class EventRequestServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("THis should run");
+
 		String eventJson = req.getReader().readLine();
-		System.out.println(eventJson);
-		EventRequest myEvent = new GsonBuilder().create().fromJson(eventJson, EventRequest.class);
+		System.out.println("This is from eventJson " + eventJson);
+		EventRequest myEvent = new GsonBuilder().setPrettyPrinting().create().fromJson(eventJson, EventRequest.class);
+		System.out.println(myEvent);
 		try {
 			eventService.addEvent(myEvent);
 			resp.getWriter().write("Success");
@@ -40,8 +41,6 @@ public class EventRequestServlet extends HttpServlet {
 			resp.setStatus(resp.SC_INTERNAL_SERVER_ERROR);
 			resp.getWriter().write("Event could not be created");
 		}
-		System.out.println("THis should run");
-
 	}
 
 	public void setEventService(EventRequestService eventService) {
