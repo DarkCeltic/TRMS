@@ -10,7 +10,7 @@ public class ConnectionFactory {
 	private String password;
 	private String url;
 	private static ConnectionFactory connectionFactory;
-	private static final String SCHEMA = "TRMS";
+	private static final String SCHEMA = "public";
 
 	public static Connection getConnection() {
 		if (connectionFactory == null) {
@@ -22,7 +22,7 @@ public class ConnectionFactory {
 	private ConnectionFactory() {
 		username = System.getenv("POSTGRES_USERNAME");
 		password = System.getenv("POSTGRES_PASSWORD");
-		url = "jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":5432/postgres?";
+		url = "jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":5432/TRMS?";
 	}
 	
 	private Connection createConnection() {
