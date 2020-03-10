@@ -24,18 +24,6 @@ function addEvent() {
 
     console.log("This should run");
     let eventDescription = document.getElementById("addevent_eventdescription").value;
-    // console.log(document.getElementById("addevent_price").value);
-    // console.log(document.getElementById("addevent_city").value);
-    // console.log(document.getElementById("addevent_state").value);
-    // console.log(document.getElementById("addevent_zipcode").value);
-    // console.log(document.getElementById("addevent_event_start_date").value);
-    // console.log(document.getElementById("addevent_event_end_date").value);
-    // console.log(document.getElementById("addevent_event_start_time").value);
-    // console.log(document.getElementById("addevent_event_end_time").value);
-    // console.log(document.getElementById("addevent_gradingformat").value);
-    // console.log(document.getElementById("addevent_eventtype").value);
-    // console.log(document.getElementById("addevent_justification").value);
-    // console.log(document.getElementById("addevent_username").value);
     let price = document.getElementById("addevent_price").value;
     let city = document.getElementById("addevent_city").value;
     let state = document.getElementById("addevent_state").value;
@@ -49,40 +37,28 @@ function addEvent() {
     let justification = document.getElementById("addevent_justification").value;
     let username = document.getElementById("addevent_username").value;
 
-        let newEvents = new Events(eventDescription, price, city, state,
-            zipCode, startDate, endDate, startTime, endTime,
-            gradingFormat, eventType, justification, username);
+    let newEvents = new Events(eventDescription, price, city, state,
+        zipCode, startDate, endDate, startTime, endTime,
+        gradingFormat, eventType, justification, username);
 
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Success");
-            }
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Success");
         }
-        xhr.open("POST", "/TRMS/event_request", true);
-        xhr.send(JSON.stringify(newEvents));
+    }
+    xhr.open("POST", "/TRMS/event_request", true);
+    xhr.send(JSON.stringify(newEvents));
 }
 
 window.onload = function () {
     this.document.getElementById("addEvent").addEventListener('click', add);
-    // this.document.getElementById("submitEvent").addEventListener("click", addEvent, false);
 }
-
-
-// window.onload = function () {
-//     this.document.getElementById("addEvent").addEventListener('click', add);
-// }
 
 function add() {
     document.getElementById("addEvent").disabled = true;
     document.getElementById("add_event_form").style.display = "block";
 }
-
-// $("#submitEvent").click(function(e) {
-//     e.preventDefault();
-// });
-
-// submitEvent
 
 window.addEventListener('load', function () {
     let one_week = new Date(+new Date + 6.048e+8);

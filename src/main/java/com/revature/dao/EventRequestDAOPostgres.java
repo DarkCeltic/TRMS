@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.domain.EventRequest;
@@ -38,8 +39,24 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 	}
 
 	public List<EventRequest> retrieveAllEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		List<EventRequest> eventsList = new ArrayList<EventRequest>();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_EVENTS);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				eventsList.add(new EventRequest(rs.getString("event_description"), rs.getInt("price"),
+						rs.getString("city"), rs.getString("state"), rs.getInt("zip_code"), rs.getString("start_date"),
+						rs.getString("end_date"), rs.getString("start_time"), rs.getString("end_time"),
+						rs.getString("grading_format_id"), rs.getString("event_type_id"), rs.getString("justification"),
+						rs.getString("username"), rs.getInt("event_id")));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eventsList;
 	}
 
 	public void insertEvent(EventRequest event) throws EventInsertionException {

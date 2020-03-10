@@ -19,6 +19,15 @@ public class EventRequest {
 	private String username;
 	private String finalGrade;
 	private boolean active;
+	private int event_id;
+
+	public int getEvent_id() {
+		return event_id;
+	}
+
+	public void setEvent_id(int event_id) {
+		this.event_id = event_id;
+	}
 
 	public boolean isActive() {
 		return active;
@@ -85,7 +94,7 @@ public class EventRequest {
 	}
 
 	public Time getStartTime() {
-		 return java.sql.Time.valueOf(startTime+":00");
+		return java.sql.Time.valueOf(startTime + ":00");
 	}
 
 	public void setStartTime(String startTime) {
@@ -93,7 +102,7 @@ public class EventRequest {
 	}
 
 	public Time getEndTime() {
-		return java.sql.Time.valueOf(endTime+":00");
+		return java.sql.Time.valueOf(endTime + ":00");
 	}
 
 	public void setEndTime(String endTime) {
@@ -286,6 +295,26 @@ public class EventRequest {
 		this.eventType = eventType;
 		this.justification = justification;
 		this.username = username;
+	}
+
+	public EventRequest(String eventDescription, int price, String city, String state, int zipCode, String startDate,
+			String endDate, String startTime, String endTime, String gradingFormat, String eventType,
+			String justification, String username, int event_id) {
+		super();
+		this.eventDescription = eventDescription;
+		this.price = price;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.justification = justification;
+		this.username = username;
+		this.event_id = event_id;
 	}
 
 	public EventRequest() {

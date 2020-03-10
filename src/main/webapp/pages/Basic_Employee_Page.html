@@ -30,10 +30,9 @@
     <br>
     <div class="Options">
         <button class="btn btn-primary mb-3" id="addEvent">Add Event</button>
-        <button class="btn btn-primary mb-3" id="removeItem">View Pending Events</button>
-
-        <button class="btn btn-primary mb-3" id="moveUp">View Approved Events</button>
-        <button class="btn btn-primary mb-3" id="moveDown">View Previous Events</button>
+        <button class="btn btn-primary mb-3" id="pendingEvent">View Pending Events</button>
+        <button class="btn btn-primary mb-3" id="approvedEvent">View Approved Events</button>
+        <button class="btn btn-primary mb-3" id="previousEvent">View Previous Events</button>
     </div>
     <br>
     <br>
@@ -169,6 +168,27 @@
         <button class="btn btn-primary" type="submit" id="submitEvent">Submit form</button>
     </form>
 
+
+    <div id="pendingEvents" class="table-responsive-sm mb-8">
+        <table id="previousTable" class="table table-responsive-sm table-boarded table-dark table-hover">
+            <tr id="header">
+                <th scope="col" id="eventID">Event ID</th>
+                <th scope="col" id="descr">Description</th>
+                <th scope="col" id="price">Price</th>
+                <th scope="col" id="city">City</th>
+                <th scope="col" id="state">State</th>
+                <th scope="col" id="zip">Zip Code</th>
+                <th scope="col" id="startD">Start Date</th>
+                <th scope="col" id="endD">End Date</th>
+                <th scope="col" id="startT">Start Time</th>
+                <th scope="col" id="endT">End Time</th>
+                <th scope="col" id="gradeFormat">Grading Format</th>
+                <th scope="col" id="type">Type</th>
+                <th scope="col" id="justif">Justification</th>
+            </tr>
+
+        </table>
+    </div>
     <!--===============================================================================================-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -181,11 +201,9 @@
         crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="../js/addevent.js"></script>
-    <!-- <script type="text/javascript" src="../js/Basic_Employee_Page.js"></script> -->
-
 
     <!--===============================================================================================-->
-
+    <script type="text/javascript" src="../js/events.js"></script>
 
 </body>
 
