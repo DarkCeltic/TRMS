@@ -5,6 +5,9 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String userName;
+	private String password;
+	private int employeeLevel;
+	private double reimbursementAmount;
 
 	public String getFirstName() {
 		return firstName;
@@ -53,10 +56,6 @@ public class Employee {
 	public void setReimbursementAmount(double reimbursementAmount) {
 		this.reimbursementAmount = reimbursementAmount;
 	}
-
-	private String password;
-	private int employeeLevel;
-	private double reimbursementAmount;
 
 	@Override
 	public int hashCode() {

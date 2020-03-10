@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.revature.domain.Employee;
-import com.revature.domain.User;
 import com.revature.util.ConnectionFactory;
 
 public class EmployeeDAOPostgres implements EmployeeDAO {
@@ -30,10 +29,10 @@ public class EmployeeDAOPostgres implements EmployeeDAO {
 
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
-		return null;
+		return employee;
 	}
 
 }
