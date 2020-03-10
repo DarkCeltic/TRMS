@@ -56,8 +56,17 @@ window.onload = function () {
 }
 
 function add() {
+
     document.getElementById("addEvent").disabled = true;
     document.getElementById("add_event_form").style.display = "block";
+    document.getElementById("previousTable").style.display = "none";
+    document.getElementById("pendingEventButton").disabled = false;
+    document.getElementById("approvedEvent").disabled = false;
+    document.getElementById("previousEvent").disabled = false;
+    let list = document.getElementsByClassName("list-form");
+    for (let index = list.length; index >= 0; index++) {
+        list[0].remove();
+    }
 }
 
 window.addEventListener('load', function () {

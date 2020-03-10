@@ -106,10 +106,23 @@ form {
     margin-left: 10px;
 }
 
-input.invalid, textarea.invalid option.invalid{
+input.invalid, textarea.invalid option.invalid {
     border: 2px solid red;
 }
 
-input.valid, textarea.valid option.valid{
+input.valid, textarea.valid option.valid {
     border: 2px solid green;
+}
+
+#pendingEvents {
+    width: 82%;
+    text-align: center;
+}
+
+#previousTable {
+    margin-left: 10%;
+    display: none;
+    /* font-size: 15px; */
+    /* text-align: justify; */
+    /* margin: auto; */
 }

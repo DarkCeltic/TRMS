@@ -50,7 +50,6 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 						rs.getString("end_date"), rs.getString("start_time"), rs.getString("end_time"),
 						rs.getString("grading_format_id"), rs.getString("event_type_id"), rs.getString("justification"),
 						rs.getString("username"), rs.getInt("event_id")));
-
 			}
 
 		} catch (Exception e) {

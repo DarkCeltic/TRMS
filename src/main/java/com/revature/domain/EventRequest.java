@@ -122,8 +122,17 @@ public class EventRequest {
 		return 0;
 	}
 
-	public void setGradingFormat(String gradingFormat) {
-		this.gradingFormat = gradingFormat;
+	public String setGradingFormat(String gradingFormat) {
+//		this.gradingFormat = gradingFormat;
+		switch (gradingFormat) {
+		case "1":
+			return "Letter Grade";
+		case "2":
+			return "Pass/Fail";
+		case "3":
+			return "Presentation";
+		}
+		return null;
 	}
 
 	// TODO change this to read from the database
@@ -146,8 +155,24 @@ public class EventRequest {
 		return 0;
 	}
 
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
+	public String setEventType(String eventType) {
+//		this.eventType = eventType;
+		switch (eventType) {
+		case "1":
+			return "University Course";
+		case "2":
+			return "Seminar";
+		case "3":
+			return "Certification Prep";
+		case "4":
+			return "Certification";
+		case "5":
+			return "Technical Training";
+		case "6":
+			return "Other";
+		}
+
+		return null;
 	}
 
 	public String getJustification() {
@@ -310,8 +335,8 @@ public class EventRequest {
 		this.endDate = endDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.gradingFormat = gradingFormat;
-		this.eventType = eventType;
+		this.gradingFormat = setGradingFormat(gradingFormat);
+		this.eventType = setEventType(eventType);
 		this.justification = justification;
 		this.username = username;
 		this.event_id = event_id;
