@@ -1,0 +1,22 @@
+2020-03-12 16:12:38 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:14:56 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:15:22 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:19:24 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:24:53 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:25:18 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:25:27 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:25:33 ERROR root:83 - The system has experienced a fatal defect org.postgresql.util.PSQLException: ERROR: relation "events" does not exist
+  Position: 15
+2020-03-12 16:27:28 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:41:16 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:41:16 INFO  root:171 - Rand retreived all of their approved events
+2020-03-12 16:54:38 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:54:38 INFO  root:171 - Rand retreived all of their approved events
+2020-03-12 16:54:55 INFO  root:81 - All events have been retrieved by Rand
+2020-03-12 16:54:55 INFO  root:171 - Rand retreived all of their approved events
+2020-03-12 16:54:55 INFO  root:193 - Manager Lcol has retrieved all pending events
