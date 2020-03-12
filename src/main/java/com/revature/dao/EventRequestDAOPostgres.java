@@ -9,6 +9,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.domain.Employee;
 import com.revature.domain.EventRequest;
 import com.revature.exception.EventInsertionException;
 import com.revature.util.ConnectionFactory;
@@ -20,11 +21,13 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 	private static final String EVENTS_TABLE = "events";
 	private static final String EVENT_STATUS = "event_status";
 	private static final String EMPLOYEES_TABLE = "employees";
-	private static final String SELECT_ALL_EVENTS = "select * from " + EVENTS_TABLE;
+	private static final String SELECT_ALL_EVENTS = "select * from " + EVENTS_TABLE
+			+ " where username = ? AND EVENT_ID IN (SELECT EVENT_ID from EVENT_STATUS where pending = true)";
 	private static final String INSERT_EVENTS = "insert into " + EVENTS_TABLE
 			+ " (event_description, price, city, state, zip_code, start_date, end_date, "
 			+ "start_time, end_time, grading_format_id, event_type_id, justification, "
 			+ "username) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
 	private static final String GET_EMPLOYEE_LEVEL = "select employee_level from " + EMPLOYEES_TABLE
 			+ " where username=?";
 	private static final String GET_EVENT_ID = "select event_id from " + EVENTS_TABLE
@@ -33,15 +36,20 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 			+ "(event_id, approval_stage) values(?,?)";
 	private static final String SET_EVENT_STATUS_URGENT = "insert into " + EVENT_STATUS
 			+ "(event_id, approval_stage, urgent) values(?,?,?)";
+	private static final String GET_APPROVED_EVENTS = "SELECT * from EVENTS where username = ? "
+			+ "AND EVENT_ID IN (SELECT EVENT_ID from EVENT_STATUS where pending = false)";
+	private static final String GET_MANAGER_PENDING_EVENTS = "SELECT * from EVENTS where USERNAME IN (SELECT USERNAME from EMPLOYEES where EMPLOYEE_LEVEL < ?) AND "
+			+ "event_id in (SELECT EVENT_ID from EVENT_STATUS where pending = true)";
 
 	public void setConn(Connection conn) {
 		this.conn = conn;
 	}
 
-	public List<EventRequest> retrieveAllEvents() {
+	public List<EventRequest> retrieveAllEvents(Employee employee) {
 		List<EventRequest> eventsList = new ArrayList<EventRequest>();
 		try {
 			PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_EVENTS);
+			stmt.setString(1, employee.getUsername());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 
@@ -120,5 +128,48 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 			newE.initCause(e);
 			throw newE;
 		}
+	}
+
+	@Override
+	public List<EventRequest> retrieveApprovedEvents(Employee employee) {
+		List<EventRequest> approvedEventsList = new ArrayList<EventRequest>();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(GET_APPROVED_EVENTS);
+			stmt.setString(1, employee.getUsername());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				approvedEventsList.add(new EventRequest(rs.getString("event_description"), rs.getInt("price"),
+						rs.getString("city"), rs.getString("state"), rs.getInt("zip_code"), rs.getString("start_date"),
+						rs.getString("end_date"), rs.getString("start_time"), rs.getString("end_time"),
+						rs.getString("grading_format_id"), rs.getString("event_type_id"), rs.getString("justification"),
+						rs.getString("username"), rs.getInt("event_id")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return approvedEventsList;
+	}
+
+	@Override
+	public List<EventRequest> managerGetPendingEvents(Employee employee) {
+		List<EventRequest> managerPendingEvents = new ArrayList<EventRequest>();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(GET_MANAGER_PENDING_EVENTS);
+			stmt.setInt(1, employee.getEmployeeLevel());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				managerPendingEvents.add(new EventRequest(rs.getString("event_description"), rs.getInt("price"),
+						rs.getString("city"), rs.getString("state"), rs.getInt("zip_code"), rs.getString("start_date"),
+						rs.getString("end_date"), rs.getString("start_time"), rs.getString("end_time"),
+						rs.getString("grading_format_id"), rs.getString("event_type_id"), rs.getString("justification"),
+						rs.getString("username"), rs.getInt("event_id")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return managerPendingEvents;
 	}
 }

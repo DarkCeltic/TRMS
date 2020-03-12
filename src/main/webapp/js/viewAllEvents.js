@@ -1,42 +1,33 @@
-this.document.getElementById("pendingEventButton").addEventListener('click', showPendingEvents);
+this.document.getElementById("viewAllPendingEvents").addEventListener('click', showAllPendingEvents);
 
-function showPendingEvents() {
+function showAllPendingEvents() {
     document.getElementById("add_event_form").style.display = "none";
-    // document.getElementById("approvedTable").style.display = "none";
     document.getElementById("previousTable").style.display = "block";
-    document.getElementById("addEvent").disabled = false;
-    document.getElementById("approvedEvent").disabled = false;
-    document.getElementById("pendingEventButton").disabled = true;
-    // $("#approvedEventsRows").empty();
-    // let list = document.getElementsByClassName("list-form");
-    // if (list.innerHTML !== undefined) {
-    //     for (let index = list.length; index >= 0; index++) {
-    //         list[0].remove();
-    //     }
-    // }
+    // document.getElementById("approvedTable").style.display = "none";
+    // document.getElementById("pendingEventButton").disabled = true;
     let list = document.getElementsByClassName("list-form");
     if ($("#table-body tr").length > 0) {
-        for (let index = list.length; index > 0; index--) {
+        for (let index = list.length; index > 0; index--) {  
             list[0].remove();
         }
     }
-    getPendingEventList();
+    getAllPendingEventList();
 }
 
-function getPendingEventList() {
+function getAllPendingEventList() {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let eventList = JSON.parse(xhr.responseText);
             // console.log(eventList);
-            displayPendingEventList(eventList);
+            displayAllPendingEventList(eventList);
         }
     }
-    xhr.open("GET", "/TRMS/pendingEvents", true);
+    xhr.open("GET", "/TRMS/Manager", true);
     xhr.send();
 }
 
-function displayPendingEventList(eventList) {
+function displayAllPendingEventList(eventList) {
 
     for (let event of eventList) {
         let row = document.createElement("tr");

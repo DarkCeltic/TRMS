@@ -47,7 +47,7 @@ function addEvent() {
             console.log("Success");
         }
     }
-    xhr.open("POST", "/TRMS/event_request", true);
+    xhr.open("POST", "/pendingEvents", true);
     xhr.send(JSON.stringify(newEvents));
 }
 
@@ -59,13 +59,23 @@ function add() {
 
     document.getElementById("addEvent").disabled = true;
     document.getElementById("add_event_form").style.display = "block";
+    // document.getElementById("approvedTable").style.display = "none";
     document.getElementById("previousTable").style.display = "none";
     document.getElementById("pendingEventButton").disabled = false;
     document.getElementById("approvedEvent").disabled = false;
     document.getElementById("previousEvent").disabled = false;
+    // let list = document.getElementsByClassName("list-form");
+    // if (list.empty !== undefined) {
+    //     for (let index = list.length; index >= 0; index++) {
+    //         list[0].remove();
+    //     }
+    // }
     let list = document.getElementsByClassName("list-form");
-    for (let index = list.length; index >= 0; index++) {
-        list[0].remove();
+    jQuery.isEmptyObject(list); 
+    if ($("#table-body tr").length > 0) {
+        for (let index = list.length; index > 0; index--) {
+            list[0].remove();
+        }
     }
 }
 
@@ -80,9 +90,11 @@ window.addEventListener('load', function () {
     let one_week_from_now = year + "-" + month + "-" + day;
     let date = document.getElementsByName("event_start_date")[0];
     date.min = one_week_from_now;
+    date.val = one_week_from_now;
 
     let end_date = document.getElementsByName("event_end_date")[0];
     end_date.min = one_week_from_now;
+    end_date.val = one_week_from_now;
 });
 
 $(document).ready(function () {

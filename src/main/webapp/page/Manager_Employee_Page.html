@@ -9,7 +9,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/Basic_Employee_Page.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/TRMS/css/Basic_Employee_Page.css'>
     <!--===============================================================================================-->
 
 </head>
@@ -22,17 +22,15 @@
         </a>
       </nav> -->
     <div class="welc_mes">
-        <img src="../images/Dunder_Mifflin,_Inc.svg" alt="dunder mifflin logo" class="img-thumbnail">
+        <img src="/TRMS/images/Dunder_Mifflin,_Inc.svg" alt="dunder mifflin logo" class="img-thumbnail">
 
         <h5 class="welcome">Welcome ------ to the Dunder Mifflin Paper Co. Employee Page</h5>
     </div>
     <br>
     <br>
     <div class="Options">
-        <button class="btn btn-primary mb-3" id="addEvent">Add Event</button>
-        <button class="btn btn-primary mb-3" id="pendingEventButton">View Pending Events</button>
-        <button class="btn btn-primary mb-3" id="approvedEvent">View Approved Events</button>
-        <button class="btn btn-primary mb-3" id="previousEvent">View Previous Events</button>
+        <button class="btn btn-primary mb-3" id="viewAllPendingEvents">View All Pending Events</button>
+        <button class="btn btn-primary mb-3" id="homePage">Return to Home Page</button>
     </div>
     <br>
     <br>
@@ -168,31 +166,58 @@
         <button class="btn btn-primary" type="submit" id="submitEvent">Submit form</button>
     </form>
 
-
+    <!--Pending events table -->
     <div id="pendingEvents" class="table-responsive-md mb-8">
-        <table id="previousTable" class="table table-responsive-sm table-boarded table-dark table-hover" cellpadding="0" cellspacing="0">
-           <thead>
-            <tr id="header">
-                <th scope="col" id="eventID">Event ID</th>
-                <th scope="col" id="descr">Description</th>
-                <th scope="col" id="price">Price</th>
-                <th scope="col" id="city">City</th>
-                <th scope="col" id="state">State</th>
-                <th scope="col" id="zip">Zip Code</th>
-                <th scope="col" id="startD">Start Date</th>
-                <th scope="col" id="endD">End Date</th>
-                <th scope="col" id="startT">Start Time</th>
-                <th scope="col" id="endT">End Time</th>
-                <th scope="col" id="gradeFormat">Grading Format</th>
-                <th scope="col" id="type">Type</th>
-                <th scope="col" id="justif">Justification</th>
-            </tr>
+        <table id="previousTable" class="table table-responsive-sm table-boarded table-dark table-hover" cellpadding="0"
+            cellspacing="0">
+            <thead>
+                <tr id="header">
+                    <th scope="col" id="eventID">Event ID</th>
+                    <th scope="col" id="descr">Description</th>
+                    <th scope="col" id="price">Price</th>
+                    <th scope="col" id="city">City</th>
+                    <th scope="col" id="state">State</th>
+                    <th scope="col" id="zip">Zip Code</th>
+                    <th scope="col" id="startD">Start Date</th>
+                    <th scope="col" id="endD">End Date</th>
+                    <th scope="col" id="startT">Start Time</th>
+                    <th scope="col" id="endT">End Time</th>
+                    <th scope="col" id="gradeFormat">Grading Format</th>
+                    <th scope="col" id="type">Type</th>
+                    <th scope="col" id="justif">Justification</th>
+                </tr>
             <tbody id="table-body">
 
             </tbody>
-           </thead>
+            </thead>
         </table>
     </div>
+<!--Approved events table -->
+    <!-- <div id="approvedEvents" class="table-responsive-md mb-8">
+        <table id="approvedTable" class="table table-responsive-sm table-boarded table-dark table-hover" cellpadding="0"
+            cellspacing="0">
+            <thead>
+                <tr id="header">
+                    <th scope="col" id="eventID">Event ID</th>
+                    <th scope="col" id="descr">Description</th>
+                    <th scope="col" id="price">Price</th>
+                    <th scope="col" id="city">City</th>
+                    <th scope="col" id="state">State</th>
+                    <th scope="col" id="zip">Zip Code</th>
+                    <th scope="col" id="startD">Start Date</th>
+                    <th scope="col" id="endD">End Date</th>
+                    <th scope="col" id="startT">Start Time</th>
+                    <th scope="col" id="endT">End Time</th>
+                    <th scope="col" id="gradeFormat">Grading Format</th>
+                    <th scope="col" id="type">Type</th>
+                    <th scope="col" id="justif">Justification</th>
+                </tr>
+            <tbody id="approvedTableBody table-body">
+
+            </tbody>
+            </thead>
+        </table>
+    </div> -->
     <!--===============================================================================================-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -203,11 +228,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="../js/addevent.js"></script>
-
+        <script type="text/javascript" src="/TRMS/js/viewAllEvents.js"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../js/events.js"></script>
+   
 
 </body>
 

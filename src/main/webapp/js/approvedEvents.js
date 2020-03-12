@@ -1,47 +1,42 @@
-this.document.getElementById("pendingEventButton").addEventListener('click', showPendingEvents);
+this.document.getElementById("approvedEvent").addEventListener('click', showApprovedEvents);
 
-function showPendingEvents() {
+function showApprovedEvents() {
     document.getElementById("add_event_form").style.display = "none";
-    // document.getElementById("approvedTable").style.display = "none";
     document.getElementById("previousTable").style.display = "block";
+    // document.getElementById("approvedTable").style.display = "block";
     document.getElementById("addEvent").disabled = false;
-    document.getElementById("approvedEvent").disabled = false;
-    document.getElementById("pendingEventButton").disabled = true;
-    // $("#approvedEventsRows").empty();
-    // let list = document.getElementsByClassName("list-form");
-    // if (list.innerHTML !== undefined) {
-    //     for (let index = list.length; index >= 0; index++) {
-    //         list[0].remove();
-    //     }
-    // }
+    document.getElementById("pendingEventButton").disabled = false;
+    document.getElementById("previousEvent").disabled = false;
+    document.getElementById("approvedEvent").disabled = true;
     let list = document.getElementsByClassName("list-form");
     if ($("#table-body tr").length > 0) {
         for (let index = list.length; index > 0; index--) {
             list[0].remove();
         }
     }
-    getPendingEventList();
+    getApprovedEventList();
 }
 
-function getPendingEventList() {
+function getApprovedEventList() {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let eventList = JSON.parse(xhr.responseText);
-            // console.log(eventList);
-            displayPendingEventList(eventList);
+            console.log(eventList);
+            displayApprovedEventList(eventList);
         }
     }
-    xhr.open("GET", "/TRMS/pendingEvents", true);
+    xhr.open("GET", "/TRMS/approvedEvents", true);
     xhr.send();
 }
 
-function displayPendingEventList(eventList) {
+function displayApprovedEventList(eventList) {
 
     for (let event of eventList) {
+        console.log(event);
         let row = document.createElement("tr");
         row.className = "list-form";
-        row.id = "pendingEventsRows";
+        row.id = "approvedEventsRows";
         let eventDescription = document.createElement("td");
         let price = document.createElement("td");
         let city = document.createElement("td");
@@ -54,8 +49,6 @@ function displayPendingEventList(eventList) {
         let gradingFormat = document.createElement("td");
         let eventType = document.createElement("td");
         let justification = document.createElement("td");
-        // let username = document.createElement("td");
-        // let active = document.createElement("td");
         let event_id = document.createElement("td");
 
         event_id.innerHTML = event.event_id;
@@ -71,8 +64,6 @@ function displayPendingEventList(eventList) {
         gradingFormat.innerHTML = event.gradingFormat;
         eventType.innerHTML = event.eventType;
         justification.innerHTML = event.justification;
-        // username.innerHTML = event.username;
-        // active.innerHTML = event.active;
 
         row.appendChild(event_id);
         row.appendChild(eventDescription);
@@ -87,9 +78,7 @@ function displayPendingEventList(eventList) {
         row.appendChild(gradingFormat);
         row.appendChild(eventType);
         row.appendChild(justification);
-        // row.appendChild(username);
-        // row.appendChild(active);
-        console.log(document.getElementById("table-body"));
+
         document.getElementById("table-body").appendChild(row);
     }
 }

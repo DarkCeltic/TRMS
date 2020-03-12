@@ -12,7 +12,8 @@ public class EmployeeDAOPostgres implements EmployeeDAO {
 	private Connection conn = ConnectionFactory.getConnection();
 
 	private static final String EMPLOYEE_TABLE = "employees";
-	private static final String SELECT_EMPLOYEE_BY_USERNAME = "select * from " + EMPLOYEE_TABLE + " where username=?";
+	private static final String SELECT_EMPLOYEE_BY_USERNAME = "select username, password, employee_level from " + EMPLOYEE_TABLE
+			+ " where username=?";
 
 	@Override
 	public Employee getEmployeeByUsername(String username) {
@@ -23,10 +24,9 @@ public class EmployeeDAOPostgres implements EmployeeDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				employee = new Employee();
-				employee.setUserName(rs.getString(1));
+				employee.setUsername(rs.getString(1));
 				employee.setPassword(rs.getString(2));
 				employee.setEmployeeLevel(rs.getInt(3));
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

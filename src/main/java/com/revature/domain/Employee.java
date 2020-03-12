@@ -4,7 +4,7 @@ public class Employee {
 
 	private String firstName;
 	private String lastName;
-	private String userName;
+	private String username;
 	private String password;
 	private int employeeLevel;
 	private double reimbursementAmount;
@@ -25,12 +25,12 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -68,7 +68,7 @@ public class Employee {
 		long temp;
 		temp = Double.doubleToLongBits(reimbursementAmount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -100,26 +100,26 @@ public class Employee {
 			return false;
 		if (Double.doubleToLongBits(reimbursementAmount) != Double.doubleToLongBits(other.reimbursementAmount))
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!userName.equals(other.userName))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
+		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password="
 				+ password + ", employeeLevel=" + employeeLevel + ", reimbursementAmount=" + reimbursementAmount + "]";
 	}
 
-	public Employee(String firstName, String lastName, String userName, String password, int employeeLevel,
+	public Employee(String firstName, String lastName, String username, String password, int employeeLevel,
 			double reimbursementAmount) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.employeeLevel = employeeLevel;
 		this.reimbursementAmount = reimbursementAmount;
