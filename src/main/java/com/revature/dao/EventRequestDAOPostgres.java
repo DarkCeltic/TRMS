@@ -38,9 +38,11 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 			+ "(event_id, approval_stage, urgent) values(?,?,?)";
 	private static final String GET_APPROVED_EVENTS = "SELECT * from EVENTS where username = ? "
 			+ "AND EVENT_ID IN (SELECT EVENT_ID from EVENT_STATUS where pending = false)";
-	private static final String GET_MANAGER_PENDING_EVENTS = "SELECT * from EVENTS where USERNAME IN (SELECT USERNAME from EMPLOYEES where EMPLOYEE_LEVEL < ?) AND "
-			+ "event_id in (SELECT EVENT_ID from EVENT_STATUS where pending = true)";
-
+	private static final String GET_MANAGER_PENDING_EVENTS = "SELECT * from EVENTS where EVENT_ID IN (SELECT EVENT_ID from EVENT_STATUS where APPROVAL_STAGE = ?) AND \r\n"
+			+ "event_id in (SELECT EVENT_ID from EVENT_STATUS where pending = true);";
+	private static final String MANAGER_APPROVE_EVENT = "update EVENT_STATUS set APPROVAL_STAGE = APPROVAL_STAGE + 1 where EVENT_ID = ?;";
+private static final String GET_CURRENT_APPROVAL_LEVEL = "select APPROVAL_STAGE from EVENT_STATUS where EVENT_ID = ?;";
+	
 	public void setConn(Connection conn) {
 		this.conn = conn;
 	}
@@ -171,5 +173,27 @@ public class EventRequestDAOPostgres implements EventRequestDAO {
 			e.printStackTrace();
 		}
 		return managerPendingEvents;
+	}
+
+	@Override
+	public void approveEvent(EventRequest myEvent) {
+		try {
+			int employeeLevel = 0;
+			int currentApprovalLevel = 0;
+			PreparedStatement stmt = conn.prepareStatement(GET_EMPLOYEE_LEVEL);
+			stmt.setString(1, myEvent.getUsername());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				employeeLevel = rs.getInt("employee_level");
+			}
+			stmt = conn.prepareStatement(GET_CURRENT_APPROVAL_LEVEL);
+			stmt.setInt(1, myEvent.getEvent_id());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				currentApprovalLevel = rs.getInt("approval_stage");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

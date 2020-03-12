@@ -5,7 +5,7 @@ function managerRoles() {
     // let xhr = new XMLHttpRequest();
     // xhr.onreadystatechange = function () {
     // //     if (xhr.readyState === 4 && xhr.status === 200) {
-    // //         let managerPage = JSON.parse(xhr. .responseURL);
+    // //         let managerPage = JSON.parse(xhr.responseText);
     // //         console.log(managerPage);
     // //     }
     // // }

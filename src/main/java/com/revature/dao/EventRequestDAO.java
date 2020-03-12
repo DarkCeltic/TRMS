@@ -15,4 +15,6 @@ public interface EventRequestDAO {
 	public List<EventRequest> retrieveApprovedEvents(Employee employee);
 
 	public List<EventRequest> managerGetPendingEvents(Employee employee);
+
+	public void approveEvent(EventRequest myEvent);
 }

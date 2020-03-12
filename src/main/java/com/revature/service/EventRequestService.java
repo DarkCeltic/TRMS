@@ -19,4 +19,6 @@ public interface EventRequestService {
 
 	public List<EventRequest> managerGetPendingEvents(Employee attribute);
 
+	public void approveEvent(EventRequest myEvent) throws EventInsertionException;
+
 }

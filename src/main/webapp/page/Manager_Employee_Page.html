@@ -28,7 +28,7 @@
     </div>
     <br>
     <br>
-    <div class="Options">
+    <div class="Options" id="options">
         <button class="btn btn-primary mb-3" id="viewAllPendingEvents">View All Pending Events</button>
         <button class="btn btn-primary mb-3" id="homePage">Return to Home Page</button>
     </div>
@@ -173,6 +173,7 @@
             <thead>
                 <tr id="header">
                     <th scope="col" id="eventID">Event ID</th>
+                    <th scope="col" id="eventID">Username</th>
                     <th scope="col" id="descr">Description</th>
                     <th scope="col" id="price">Price</th>
                     <th scope="col" id="city">City</th>
@@ -192,7 +193,7 @@
             </thead>
         </table>
     </div>
-<!--Approved events table -->
+    <!--Approved events table -->
     <!-- <div id="approvedEvents" class="table-responsive-md mb-8">
         <table id="approvedTable" class="table table-responsive-sm table-boarded table-dark table-hover" cellpadding="0"
             cellspacing="0">
@@ -228,9 +229,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-        <script type="text/javascript" src="/TRMS/js/viewAllEvents.js"></script>
+    <script type="text/javascript" src="/TRMS/js/displayEventsOnClick.js"></script>
+    <script type="text/javascript" src="/TRMS/js/viewAllEvents.js"></script>
+
     <!--===============================================================================================-->
-   
+
 
 </body>
 

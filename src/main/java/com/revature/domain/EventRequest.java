@@ -322,10 +322,14 @@ public class EventRequest {
 		this.username = username;
 	}
 
+	public EventRequest(String username, int event_id) {
+		this.username = username;
+		this.event_id = event_id;
+	}
+
 	public EventRequest(String eventDescription, int price, String city, String state, int zipCode, String startDate,
 			String endDate, String startTime, String endTime, String gradingFormat, String eventType,
 			String justification, String username, int event_id) {
-		super();
 		this.eventDescription = eventDescription;
 		this.price = price;
 		this.city = city;
