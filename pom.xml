@@ -60,4 +60,9 @@
 			<version>42.2.10</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<sonar.projectKey>DarkCeltic_Car_Dealership_SQL</sonar.projectKey>
+		<sonar.organization>darkceltic</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
 </project>

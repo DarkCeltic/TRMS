@@ -11,7 +11,7 @@ function approveEvent() {
     let eventID = document.getElementById("eventID").value;
     let username = document.getElementById("username").value;
 
-    let approveEvent = new Events(eventID, username);
+    let eventApproval = new Events(eventID, username);
 
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -20,7 +20,7 @@ function approveEvent() {
         }
     }
     xhr.open("POST", "/Manager", true);
-    xhr.send(JSON.stringify(approveEvent));
+    xhr.send(JSON.stringify(eventApproval)); 
 }
 
-this.document.getElementById("approveButton").addEventListener('click', approveEvent);
+document.getElementById("approveButton").addEventListener('click', approveEvent);

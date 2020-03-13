@@ -1,4 +1,4 @@
-this.document.getElementById("viewAllPendingEvents").addEventListener('click', showAllPendingEvents);
+document.getElementById("viewAllPendingEvents").addEventListener('click', showAllPendingEvents);
 
 function showAllPendingEvents() {
     document.getElementById("add_event_form").style.display = "none";

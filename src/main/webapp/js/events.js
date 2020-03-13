@@ -1,4 +1,4 @@
-this.document.getElementById("pendingEventButton").addEventListener('click', showPendingEvents);
+document.getElementById("pendingEventButton").addEventListener('click', showPendingEvents);
 
 function showPendingEvents() {
     document.getElementById("add_event_form").style.display = "none";

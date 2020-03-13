@@ -1,4 +1,4 @@
-this.document.getElementById("managerRoles").addEventListener('click', managerRoles);
+document.getElementById("managerRoles").addEventListener('click', managerRoles);
 
 function managerRoles() {
     window.location.replace("/TRMS/page/Manager_Employee_Page.html");

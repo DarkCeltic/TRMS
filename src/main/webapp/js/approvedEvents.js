@@ -1,4 +1,4 @@
-this.document.getElementById("approvedEvent").addEventListener('click', showApprovedEvents);
+document.getElementById("approvedEvent").addEventListener('click', showApprovedEvents);
 
 function showApprovedEvents() {
     document.getElementById("add_event_form").style.display = "none";
